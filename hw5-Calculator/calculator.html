@@ -1,0 +1,55 @@
+<!--
+15331359 杨竣然
+
+Design Based on: https://dribbble.com/shots/2337385-Calculator-App
+ -->
+
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="Stylesheets/calculator.css">
+    <script src="Scripts/calculator.js"></script>
+    <title>Jonathan's Calculator</title>
+  </head>
+  <body>
+    <div id="cal-view">
+      <div id="display-view">
+        <div>
+          <textarea id="expression-view" disabled="disabled" draggable="false"></textarea>
+        </div>
+        <div>
+          <textarea id="result-view" disabled="disabled" draggable="false">0</textarea>
+      </div>
+    </div>
+    <div id="keyboard">
+        <div id="function">
+          <div class="button" id="l-bracket">(</div>
+          <div class="button" id="r-bracket">)</div>
+          <div class="button" id="clear">C</div>
+          <div class="button" id="backspace">&larr;</div>
+        </div>
+        <div id="numbers">
+          <div class="button" id="seven">7</div>
+          <div class="button" id="eight">8</div>
+          <div class="button" id="nine">9</div>
+          <div class="button" id="four">4</div>
+          <div class="button" id="five">5</div>
+          <div class="button" id="six">6</div>
+          <div class="button" id="one">1</div>
+          <div class="button" id="two">2</div>
+          <div class="button" id="three">3</div>
+          <div class="button" id="dot">.</div>
+          <div class="button" id="zero">0</div>
+          <div class="button" id="equal">=</div>
+        </div>
+        <div id="operation">
+          <div class="button" id="divide">&divide;</div>
+          <div class="button" id="multi">&times;</div>
+          <div class="button" id="minus">-</div>
+          <div class="button" id="add">+</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

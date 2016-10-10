@@ -1,0 +1,75 @@
+<!--
+15331359
+Jonathan Yang
+Finish requirements with PixelStick as pixel ruler
+
+ADD:
+  - Transition delay for control ring button
+  - Optimize hover valid range
+  - Add .button hover effect
+
+Note:
+  - Use Autoprefixer to add prefix for browser compatibility, which based on the
+    data of caniuse.com, with browser filter of " > 1% "
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>环形按钮</title>
+    <meta charset="utf-8">
+    <link rel="icon" sizes="196x196" href="Images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="Stylesheets/style.css">
+  </head>
+  <body>
+    <div id="at-plus-container">
+      <div id="bottom-positioner">
+        <div id="button">
+
+          <div id="info-bar">
+            <div style="display:block" class="info">
+              <ul>
+                <li title="2人参与讨论" class="page user">
+                  <img src="Images/people.png" alt="people.png">
+                  <span>2</span>
+                </li>
+                <li title="3条评论" class="page comment">
+                  <img src="Images/comment.png" alt="comment.png">
+                  <span>3</span>
+                </li>
+                <li title="我有6条评论" class="mine posted">
+                  <img src="Images/post.png" alt="post.png">
+                  <span>6</span>
+                </li>
+                <li title="被赞6次" class="mine like">
+                  <img src="Images/like.png" alt="like.png">
+                  <span>6</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div id="control-ring-container">
+            <ul id="control-ring">
+              <li title="蒙板" class="mask button">
+              </li>
+              <li title="历史记录" class="history button">
+              </li>
+              <li title="消息" class="message button">
+                <span class="unread">2</span>
+              </li>
+              <li title="设置" class="setting button">
+              </li>
+              <li title="登录/注册" class="sign button">
+              </li>
+            </ul>
+          </div>
+
+          <div class="apb">
+            <div class="icon"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
