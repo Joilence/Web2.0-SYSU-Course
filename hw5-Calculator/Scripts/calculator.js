@@ -38,7 +38,9 @@ window.onload = function () {
     // Calculate Functions
     // TODO: make functions modify exprArr as less as possible
     function calResult() {
-        console.log("Now the arr is: ", exprArr);
+
+        if (resultView.value.length == 1) return resultView.value;
+        // console.log("Now the arr is: ", exprArr);
 
         // Calculate bracket first
         var leftIndex = exprArr.lastIndexOf("(");
