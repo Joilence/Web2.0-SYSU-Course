@@ -5,6 +5,7 @@ window.onload = function () {
     var endWithBracket = false;
     var exprArr = [];
     var showResult = false;
+    var firstZero = false;
 
     // -- Display --
     // Members
@@ -39,8 +40,8 @@ window.onload = function () {
     // TODO: make functions modify exprArr as less as possible
     function calResult() {
 
-        if (resultView.value.length == 1) return resultView.value;
-        // console.log("Now the arr is: ", exprArr);
+        if (expressionView.value.length == 1) return resultView.value;
+        console.log("Now the arr is: ", exprArr);
 
         // Calculate bracket first
         var leftIndex = exprArr.lastIndexOf("(");
@@ -167,12 +168,19 @@ window.onload = function () {
             }
             isUserInputNumber = true;
             endWithBracket = false;
+            firstZero = false;
     	}
     }
 
     document.getElementById("zero").onclick = function () {
-        if (!isUserInputNumber) refreshResultView("0");
-        if (resultView.value != "0") appendResult(0);
+        if (firstZero) return;
+        if (!isUserInputNumber) {
+            refreshResultView("0");
+            isUserInputNumber = true;
+            firstZero = true;
+        } else {
+            appendResult(0);
+        }
     }
 
     document.getElementById("dot").onclick = function () {
@@ -183,6 +191,7 @@ window.onload = function () {
             appendResult(".");
             isUserInputNumber = true;
         }
+        firstZero = false;
     }
 
     // Operation keyboard
@@ -209,6 +218,7 @@ window.onload = function () {
                 endWithBracket = false;
                 refreshExpressionView(exprArr.join(" "));
             }
+            firstZero = false;
         }
     }
 
