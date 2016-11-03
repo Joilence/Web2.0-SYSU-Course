@@ -1,0 +1,117 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+#header {
+    padding: 50px 0 10px 0;
+    font-size: 35px;
+}
+
+#description {
+    /*Size*/
+    width: 100%;
+    height: 50px;
+    padding: 10px 0;
+    font-size: 28px;
+}
+
+#message {
+    padding: 10px 0;
+    font-size: 20px;
+    height: 25px;
+}
+
+.message-normal {
+    color: gray;
+}
+
+.message-alert {
+    color: crimson;
+}
+
+/*Maze*/
+#maze-container {
+    /*Shape & Size*/
+    width: 720px;
+    height: 480px;
+    margin: 0 auto;
+    position: relative;
+    /*test*/
+    border: silver 1px solid;
+}
+
+#maze-container div {
+    position: absolute;
+}
+
+#start, #end {
+    /*Shape & Size*/
+    width: 48px;
+    height: 48px;
+    z-index: 100;
+    /*Content*/
+    color: white;
+    font-size: 20px;
+    line-height: 48px;
+}
+
+#start {
+    /*Shape & Size*/
+    background-color: dodgerblue;
+    /*Position*/
+    top: 0;
+    left: 0;
+}
+
+#end {
+    /*Shape & Size*/
+    background-color: crimson;
+    /*Position*/
+    bottom: 0;
+    right: 0;
+}
+
+#check-zone {
+    /*Shape & Size*/
+    width: 96px;
+    height: 96px;
+    /*Position*/
+    bottom: 0;
+    right: 0;
+    /*test*/
+    z-index: 99;
+}
+
+.wall-normal {
+    background-color: silver;
+    z-index: 50;
+    transition: background-color 0.3s;
+}
+
+.wall-alert {
+    background-color: crimson;
+    z-index: 0;
+    transition: background-color 0.3s;
+}
+
+
+
+/*Tutorial*/
+#tutorial {
+    padding-top: 30px;
+    height: 100px;
+}
+
+#example {
+    height: 48px;
+    width: 200px;
+    margin: 20px auto;
+}
+
+#tutorial p {
+    font-size: 20px;
+    line-height: 30px;
+}

@@ -1,0 +1,153 @@
+/*
+15331359
+Jonathan Yang (杨竣然)
+hw2 - Movie Review
+*/
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	background-image: url("../Images/background.png");
+
+	font: 8pt Verdana, Tahoma, sans-serif;
+}
+
+.center {
+	text-align: center;
+}
+
+.mainHeading {
+	/*font: 24pt bold Tahoma, Verdana, sans-serif;*/
+    font-size: 24pt;
+    font-weight: bold;
+    margin: 1em;
+}
+
+#banner {
+	background-image: url("../Images/bannerbackground.png");
+	background-repeat: repeat-x;
+
+	height: 50px;
+    width: 100%;
+
+    top: 0;
+    right: 0;
+    left: 0;
+
+    text-align: center;
+}
+
+#content {
+    border: 4px solid gray;
+    width: 800px;
+    height: 850px;
+
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#review-section {
+    width: 550px;
+    float: left;
+}
+
+#reviews-bar-image {
+    float: left;
+}
+
+#reviews-bar {
+    background-image: url("../Images/rottenbackground.png");
+    background-repeat: repeat-x;
+
+    color: white;
+    font-weight: bold;
+
+    height: 83px;
+}
+
+#rating {
+    color: red;
+    font-size: 48pt;
+    font-weight: bold;
+    vertical-align: bottom;
+    float: left;
+}
+
+#rating-followed {
+    color: white;
+    font-weight: normal;
+    padding: 55px;
+}
+
+#review {
+    font-weight: bold;
+    font-size: 8pt;
+}
+
+.reviews-col {
+    float: left;
+    width: 47%;
+    margin: 2% 0 0 2%;
+}
+
+.review-box {
+    background: #e1d697;
+    border: 2px gray solid;
+    padding: 8px;
+
+    font-weight: bold;
+    font-size: 8pt;
+}
+
+.review-box img {
+    float: left;
+    margin-right: 5px;
+}
+
+.review-box q {
+    clear: left;
+}
+
+.person-box {
+    font-style: italic;
+    margin: 1em 0 3em 0;
+}
+
+.person-box img {
+    float: left;
+    margin-right: 5px;
+}
+
+#overview-section {
+    width: 250px;
+    height: 827px;
+
+    float: right;
+
+    background: #a2b964;
+    font: 8pt Arial, sans-serif;
+}
+
+#overview-section dt {
+    font-weight: bold;
+    margin: 10px 10px 0 10px;
+}
+
+#overview-section dd {
+    margin-left: 50px;
+}
+
+#bottom-bar {
+    background: #a2b964;
+    clear: right;
+    padding: 5px;
+}
+
+#corner {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
