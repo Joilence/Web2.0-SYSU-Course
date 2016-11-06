@@ -1,0 +1,86 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    width: 800px;
+    margin: 0 auto;
+}
+
+/*Top Content*/
+
+h1 {
+    margin: 20px auto;
+}
+
+h2 {
+    margin: 20px auto;
+}
+
+#function-bar {
+    width: 280px;
+    text-align: center;
+    margin: 20px auto;
+}
+
+.button {
+    margin: 5px auto;
+    height: 40px;
+    width: 130px;
+    background-color: gainsboro;
+    border-radius: 10px;
+    color: dodgerblue;
+    line-height: 40px;
+}
+
+#time-label, #score-label {
+    width: 50%;
+    float: left;
+    margin: 20px auto;
+}
+
+.button:active {
+    background-color: darkgray;
+}
+
+/*Mole Hole*/
+#mole-hole {
+    width: 480px;
+    height: 480px;
+    position: relative;
+    margin: 0 auto;
+    clear: both;
+}
+
+.hole, .hole-active{
+    margin: 2px;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    float: left;
+}
+
+.hole {
+    background-color: gainsboro;
+}
+
+.hole:active {
+    background-color: crimson;
+}
+
+.hole-active {
+    background-color: dodgerblue;
+}
+
+.hole-active:active {
+    background-color: royalblue;
+}
+
+/*Bottom Content*/
+#tutorial h3, #tutorial p {
+    margin: 20px auto;
+    text-align: left;
+}
