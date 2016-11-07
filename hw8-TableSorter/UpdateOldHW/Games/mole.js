@@ -4,7 +4,6 @@ window.onload = function () {
     var time = 0;
     var score = 0;
 
-
     function initHole() {
         for (var i = 0; i < 15 * 15; ++i) {
             var hole = document.createElement("div");
