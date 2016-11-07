@@ -1,7 +1,4 @@
 window.onload = function () {
-    // Element
-    var startButton = document.getElementById("start-button");
-
     // Status
     var gameBegin = false;
     var time = 0;
@@ -12,26 +9,20 @@ window.onload = function () {
         for (var i = 0; i < 15 * 15; ++i) {
             var hole = document.createElement("div");
             hole.className = "hole";
-            hole.onclick = wrongClick;
             $("#mole-hole").append(hole);
         }
     }
 
     function selectHole() {
-        var holes = document.getElementsByClassName("hole");
-        var index = Math.floor(Math.random() * holes.length);
+        var index = Math.floor(Math.random() * 15 * 15);
 
         console.log("select new hole! ", index);
-        holes[index].onclick = function () {
+        $(".hole").eq(index).addClass("hole-active").removeClass("hole").off().on("click", function () {
             console.log("hole click!");
             rightClick();
-            this.onclick = wrongClick;
-            this.className = "hole";
+            $(this).removeClass("hole-active").addClass("hole").off().on("click", wrongClick);
             selectHole();
-        }
-
-        $(".hole").eq(index).addClass("hole-active").removeClass("hole");
-
+        });
         console.log(index, " Finish!");
     }
 
@@ -59,6 +50,7 @@ window.onload = function () {
 
     function startGame() {
         console.log("startGame()");
+        $(".hole").on("click", wrongClick);
         gameBegin = true;
         time = 29;
         refreshTime(time);
@@ -67,17 +59,14 @@ window.onload = function () {
         setTimeout(function () {
             selectHole();
             timer = setTimeout(function () {
-                console.log("timer setTimeout()")
+                console.log("timer setTimeout()");
                 stopGame();
             }, 30000);
             clocker = setInterval(function () {
                 console.log("clocker down!");
                 updateTime();
             }, 1000);
-            startButton.onclick = function () {
-                console.log("Stop Button Clicked!");
-                stopGame();
-            }
+            $("#start-button").one("click", stopGame);
         }, 100);
     }
 
@@ -91,10 +80,7 @@ window.onload = function () {
         resetHole();
         gameBegin = false;
         $("#start-button").text("Start Game").css("color", "dodgerblue");
-        startButton.onclick = function () {
-            console.log("click start!");
-            startGame();
-        }
+        $("#start-button").one("click", startGame);
     }
 
     function updateTime() {
@@ -104,8 +90,9 @@ window.onload = function () {
 
     function resetHole() {
         $(".hole-active").addClass("hole").removeClass("hole-active");
+        $(".hole").off();
     }
 
     initHole()
-    $("#start-button").on("click", startGame);
+    $("#start-button").one("click", startGame);
 }
