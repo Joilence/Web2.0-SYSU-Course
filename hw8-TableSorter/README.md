@@ -16,6 +16,8 @@ Lodash 一是确实有很多方法用不到，二是极少要用到的方法 JS 
 jQuery 的选择器以及链式函数，对于减少程序员的代码量，增强代码可读性，减少冗余部分有很大帮助。
 踩得一个小坑是，使用 jQuery 的 unbind() 和 off() 函数只能解除对应 bind() 和 on() 绑定的事件函数，并且 bind() 和 unbind() 已经不推荐使用。
 
+可能存在极少函数超过 10 行。有些因为存在 setTimeout 和 setInterval 的情况，为了保证可读性，还是选择了参数后换行。
+
 # 代码注入
 
 http://soj.sysu.edu.cn/courses.php

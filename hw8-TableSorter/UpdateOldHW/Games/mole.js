@@ -14,15 +14,11 @@ window.onload = function () {
 
     function selectHole() {
         var index = Math.floor(Math.random() * 15 * 15);
-
-        console.log("select new hole! ", index);
         $(".hole").eq(index).addClass("hole-active").removeClass("hole").off().on("click", function () {
-            console.log("hole click!");
             rightClick();
             $(this).removeClass("hole-active").addClass("hole").off().on("click", wrongClick);
             selectHole();
         });
-        console.log(index, " Finish!");
     }
 
     function wrongClick() {
@@ -48,7 +44,6 @@ window.onload = function () {
     }
 
     function startGame() {
-        console.log("startGame()");
         $(".hole").on("click", wrongClick);
         gameBegin = true;
         time = 29;
@@ -58,11 +53,9 @@ window.onload = function () {
         setTimeout(function () {
             selectHole();
             timer = setTimeout(function () {
-                console.log("timer setTimeout()");
                 stopGame();
             }, 30000);
             clocker = setInterval(function () {
-                console.log("clocker down!");
                 updateTime();
             }, 1000);
             $("#start-button").one("click", stopGame);
@@ -70,7 +63,6 @@ window.onload = function () {
     }
 
     function stopGame() {
-        console.log("stopGame()");
         clearTimeout(timer);
         clearInterval(clocker);
         refreshScore(0);
