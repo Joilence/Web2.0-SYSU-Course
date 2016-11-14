@@ -67,6 +67,12 @@ function checkDelay(id, fn, wait) {
 }
 
 function checkExisted() {
+    $.post('/dataCheck', input.name + '=' + input.value, function (data) {
+        if (data) {
+            showError(input, data);
+            return false
+        }
+    })
     return true;
 }
 

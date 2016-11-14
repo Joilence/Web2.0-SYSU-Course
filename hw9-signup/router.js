@@ -2,10 +2,26 @@
  * Created by jonypro on 14/11/2016.
  */
 
-var querystring = require("querystring");
-var fs = require("fs");
-var path = require("path");
-var database = require("./database");
+var querystring = require('querystring');
+var fs = require('fs');
+var path = require('path');
+var dataBase = require('./dataBase.js');
+
+function route(pathname, query, response, postData) {
+    if (handle[pathname]) {
+        handle[pathname](pathname, query, response, postData);
+    } else {
+        handle['getFile'](pathname, query, response, postData);
+    }
+}
+
+
+
+var MIME = {
+    '.html': 'text/html',
+    '.css': 'text/css',
+    '.js': 'application/javascript'
+}
 
 var regexp = {
     name: /^[a-z]\w{5,17}$/i,
@@ -21,7 +37,6 @@ function dataCheck(pathname, query, response, postData) {
     console.log("checking data for '" + postData + "'");
     response.writeHead(200, { 'Content-Type': 'text/plain' });
     var data = querystring.parse(postData);
-    console.log("Data parsed: ", data);
     for (var i in data) {
         dataBase.query(i, data[i], function (rows) {
             if (rows[0]) {
@@ -34,18 +49,100 @@ function dataCheck(pathname, query, response, postData) {
     }
 }
 
+function getFile(pathname, query, response, postData) {
+    console.log("Getting file " + pathname);
+    var realPath = "assets" + pathname;
+    fs.exists(realPath, function (exists) {
+        if (!exists) {
+            response.writeHead(404, { 'Content-Type': 'text/plain' });
+            response.end('file not found');
+        } else {
+            fs.readFile(realPath, "binary", function (err, file) {
+                if (err) {
+                    response.writeHead(500, { 'Content-Type': 'text/plain' });
+                    response.end(err);
+                } else {
+                    response.writeHead(200, { 'Content-Type': MIME[path.extname(realPath)] });
+                    response.write(file, 'binary');
+                    response.end();
+                }
+            });
+        }
+    });
+}
+
+function checkUser(user, callback) {
+    for (var i in user) {
+        if (!regexp[i].test(user[i])) {
+            callback(false);
+            return;
+        }
+    }
+    dataBase.checkUser(user, function (rows) {
+        callback(!rows[0]);
+    });
+}
+
+function signup(pathname, query, response, postData) {
+    var user = querystring.parse(postData);
+    delete user.submit;
+    console.log("User info recived:", user);
+    checkUser(user, function (pass) {
+        if (pass) {
+            console.log("Adding user '" + user.name + "' succeed");
+            dataBase.addUser(user, function (err, res) {
+                if (err) console.log("Adding failed");
+                else console.log("Adding succeed");
+            });
+            console.log("Current user:");
+            dataBase.showUser(function (rows) {
+                console.log(rows);
+            });
+            showDetail(pathname, query, response, postData, user.name);
+        } else {
+            console.log("Adding user '" + user.name + "' failed");
+            getFile(signinPage, query, response, postData);
+        }
+    });
+}
+
+function signin(pathname, query, response, postData) {
+    console.log("request for sign in");
+    var userName = querystring.parse(query).username;
+    if (userName) {
+        showDetail(pathname, query, response, postData, userName);
+    } else {
+        getFile(signinPage, query, response, postData);
+    }
+}
+
+function showDetail(pathname, query, response, postData, userName) {
+    console.log("Showing detail for user '" + userName + "'");
+    if (userName) {
+        dataBase.query('name', userName, function (rows) {
+            if (rows[0]) {
+                var realPath = "assets" + detailPage, user = rows[0];
+                fs.readFile(realPath, "utf8", function (err, file) {
+                    response.writeHead(200, { 'Content-Type': MIME[path.extname(realPath)] });
+                    for (var i in user) {
+                        file = file.replace('{{' + i + '}}', user[i]);
+                    }
+                    response.write(file, 'utf8');
+                    response.end();
+                });
+            } else {
+                if (userName) console.log("user '" + userName + "' donot exists");
+                getFile(signinPage, query, response, postData);
+            }
+        })
+    }
+}
+
 var handle = {
     '/signup': signup,
     '/': signin,
     '/dataCheck': dataCheck,
     'getFile': getFile
 };
-
-
-function route() {
-
-}
-
-
 
 exports.route = route;
