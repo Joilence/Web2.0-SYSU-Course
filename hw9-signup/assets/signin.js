@@ -28,17 +28,35 @@ var checkCases = {
         'should have a valid server postfix': /\.[a-z]{2,4}$/i
     }
 }
+//
+function inputCheck(input) {
+    for (var checkCase in checkCases[input.name]) {
+        if (!checkCases[input.name][checkCase].test(input.value)) {
+            showError(input, checkCase);
+            return;
+        }
+    }
+    $.post('/dataCheck', input.name + '=' + input.value, function (data) {
+        if (data) {
+            showError(input, data);
+        } else {
+            $(input).removeClass('error-state').addClass("pass-state");
+            checkAllValid();
+        }
+    })
+}
 
 //  Input Check
 function checkValid(input) {
     checkDelay(input.name, function () {
         if (input.value) {
-            if (checkFormat(input)) {
-                if (checkExisted()) {
-                    $(input).addClass("pass-state").removeClass("error-state");
-                    checkAllValid();
-                }
-            }
+            // if (checkFormat(input)) {
+            //     if (checkExisted()) {
+            //         $(input).addClass("pass-state").removeClass("error-state");
+            //         checkAllValid();
+            //     }
+            // }
+            inputCheck(input);
         }
     }, 300);
 }
@@ -75,6 +93,8 @@ function checkExisted() {
     })
     return true;
 }
+
+
 
 function checkAllValid() {
     var flag = true;
