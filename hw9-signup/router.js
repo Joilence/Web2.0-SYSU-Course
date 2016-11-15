@@ -8,7 +8,13 @@ var path = require('path');
 var dataBase = require('./dataBase.js');
 
 function route(pathname, query, response, postData) {
-    if (handle[pathname]) {
+    if (query) {
+        var queryObject = querystring.parse(query);
+        console.log("### QueryObj = ", queryObject);
+        var userName = queryObject["username"];
+        console.log("### QueryName = " + userName);
+        showDetail(pathname, query, response, postData, userName);
+    } else if (handle[pathname]) {
         handle[pathname](pathname, query, response, postData);
     } else {
         handle['getFile'](pathname, query, response, postData);
@@ -131,7 +137,7 @@ function showDetail(pathname, query, response, postData, userName) {
                     response.end();
                 });
             } else {
-                if (userName) console.log("user '" + userName + "' donot exists");
+                console.log("user '" + userName + "' donot exists");
                 getFile(signinPage, query, response, postData);
             }
         })

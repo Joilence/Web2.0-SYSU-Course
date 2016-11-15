@@ -13,6 +13,10 @@ function launch() {
         });
         request.on("end", function () {
             if (postData) console.log("Reveived Post data '" + postData + "'");
+            console.log("Pathname: " + url.parse(request.url).pathname);
+            console.log("Query: " + url.parse(request.url).query);
+            // console.log(response);
+            // console.log(postData);
             route(url.parse(request.url).pathname, url.parse(request.url).query, response, postData);
         });
     }
