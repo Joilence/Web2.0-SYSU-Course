@@ -26,6 +26,8 @@ function showUser(fn) {
 }
 
 function addUser(user, fn) {
+    console.log("adding user!");
+    console.log(user);
     conn.query('INSERT INTO user (name, id, tel, email) values("' + user.name + '", "' + user.id + '", "' + user.tel + '", "' + user.email + '")', function (err, res) {
         fn(err, res);
     });

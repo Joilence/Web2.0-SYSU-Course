@@ -36,6 +36,21 @@ h1#title {
     margin: 10px auto;
 }
 
+.detail-cell {
+    width: 80%;
+    margin: 15px auto 40px auto;
+}
+
+.detail-title {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.detail-info {
+    margin: 8px auto;
+    font-size: 20px;
+    text-indent: 30px;
+}
 
 .textfield {
     display: block;
@@ -60,8 +75,6 @@ h1#title {
     color: crimson;
     font-size: 18px;
     transition: all 0.2s;
-    /*Test*/
-    /*border: red 1px solid;*/
 }
 
 .error-state {
@@ -114,4 +127,17 @@ h1#title {
 
 #reset:active {
     background-color: brown;
+}
+
+#back {
+    color: white;
+    background-color: deepskyblue;
+    border-radius: 10px;
+    display: block;
+    width: 100%;
+    height: 50px;
+    font-size: 50px;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 0 15px 0;
 }
