@@ -1,7 +1,3 @@
-/**
- * Created by jonypro on 12/11/2016.
- */
-
 var checkCases = {
     name: {
         'should only contain alphabet, number and underline': /^\w*$/,
@@ -21,14 +17,23 @@ var checkCases = {
     email: {
         "should only contain alphabet, number, '.', '_', '-' and '@'": /^(\w|\.|-|@)*$/i,
         'should have exactly one @': /^(\w|\.|-)*@(\w|\.|-)*$/i,
-        "'@' should surround by alphabets and numbers": /\w@\w/,
+        "'@' should be between alphabets and numbers": /\w@\w/,
         'should begin with alphabet or number': /^[a-z0-9]/i,
         'should end with alphabet': /[a-z]$/i,
         "'-' or '.' should not appear continuously": /^[a-z0-9]([\-\.]?\w+)*@(\w+[\-\.]?)*[a-z]$/i,
-        'should have a valid server postfix': /\.[a-z]{2,4}$/i
+        'Server postfix is invalid': /\.[a-z]{2,4}$/i
     }
 }
-//
+
+//  Input Check
+function checkValid(input) {
+    checkDelay(input.name, function () {
+        if (input.value) {
+            inputCheck(input);
+        }
+    }, 300);
+}
+
 function inputCheck(input) {
     for (var checkCase in checkCases[input.name]) {
         if (!checkCases[input.name][checkCase].test(input.value)) {
@@ -46,32 +51,6 @@ function inputCheck(input) {
     })
 }
 
-//  Input Check
-function checkValid(input) {
-    checkDelay(input.name, function () {
-        if (input.value) {
-            // if (checkFormat(input)) {
-            //     if (checkExisted()) {
-            //         $(input).addClass("pass-state").removeClass("error-state");
-            //         checkAllValid();
-            //     }
-            // }
-            inputCheck(input);
-        }
-    }, 300);
-}
-
-function checkFormat(input) {
-    for (var checkCase in checkCases[input.name]) {
-        if (!checkCases[input.name][checkCase].test(input.value)) {
-            showError(input, checkCase);
-            return false;
-        }
-    }
-    hideError(input, 100);
-    return true;
-}
-
 var timer = {};
 function checkDelay(id, fn, wait) {
     if (timer[id]) {
@@ -83,18 +62,6 @@ function checkDelay(id, fn, wait) {
         delete timer[id];
     }, wait);
 }
-
-function checkExisted() {
-    $.post('/dataCheck', input.name + '=' + input.value, function (data) {
-        if (data) {
-            showError(input, data);
-            return false
-        }
-    })
-    return true;
-}
-
-
 
 function checkAllValid() {
     var flag = true;
@@ -135,4 +102,3 @@ window.onload  = function () {
         })
     });
 }
-
