@@ -1,0 +1,246 @@
+/*
+15331359
+Jonathan Yang
+Finish requirements with PixelStick as pixel ruler
+
+ADD:
+  - Transition delay for control ring button
+  - Optimize hover valid range
+  - Add .button hover effect
+
+Note:
+  - Use Autoprefixer to add prefix for browser compatibility, which based on the
+    data of caniuse.com, with browser filter of " > 1% "
+  */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+ul {
+    list-style-type: none;
+}
+
+/*---- Dividers ----*/
+#at-plus-container {
+    width: 150px;
+    height: 150px;
+}
+
+#bottom-positioner {
+    /*Shape & Size*/
+    width: 150px;
+    height: 150px;
+    /*Position*/
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+}
+
+#button {
+    /*Shape & Size*/
+    width: 150px;
+    height: 150px;
+    /*Position*/
+    position: absolute;
+    left: -50%;
+}
+
+#button .button, #button .apb {
+    top: 68px;
+    left: 63px;
+}
+
+/*---- Info Bar ----*/
+#info-bar {
+    /*Shape & Size*/
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    /*Background*/
+    background-color: dodgerblue;
+    /*Position*/
+    position: absolute;
+    left: 13px;
+    top: 17px;
+    margin: auto auto;
+    /*Property*/
+    opacity: 1;
+    -webkit-transform: scale(0) translateY(0);
+            transform: scale(0) translateY(0);
+    -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+}
+
+.info {
+    text-align: center;
+    margin: auto auto;
+}
+
+.page {
+    margin: 8px auto;
+    color: white;
+}
+
+.mine {
+    display: inline;
+    color: #21d285;
+    font-weight: bold;
+}
+
+/*Minor Adjustment*/
+#button:hover #info-bar {
+    opacity: 1;
+    /*-webkit-transition-delay: 0.1s;*/
+            /*transition-delay: 0.1s;*/
+    -webkit-transform: scale(1) translateY(-97px);
+            transform: scale(1) translateY(-97px);
+}
+
+ /*---- Control Ring ----*/
+#button:hover .mask {
+    opacity: 1;
+    /*-webkit-transition-delay: 0.2s;*/
+            /*transition-delay: 0.2s;*/
+    -webkit-transform: scale(1) translateY(-35px) translateX(-64px);
+            transform: scale(1) translateY(-35px) translateX(-64px);
+}
+
+#button:hover .history {
+    opacity: 1;
+    /*-webkit-transition-delay: 0.3s;*/
+            /*transition-delay: 0.3s;*/
+    -webkit-transform: scale(1) translateY(2px) translateX(-72px);
+            transform: scale(1) translateY(2px) translateX(-72px);
+}
+
+#button:hover .message {
+    opacity: 1;
+    /*-webkit-transition-delay: 0.4s;*/
+            /*transition-delay: 0.4s;*/
+    -webkit-transform: scale(1) translateY(36px) translateX(-56px);
+            transform: scale(1) translateY(36px) translateX(-56px);
+}
+
+.button .num {
+    /*Shape & Size*/
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    /*Contents*/
+    color: white;
+    font-size: 10pt;
+    font-weight: bold;
+    display: block;
+    line-height: 19px;
+    text-align: center;
+    background-color: red;
+    /*Position*/
+    position: absolute;
+    left: 20px;
+    top: -4px;
+}
+
+#button:hover .setting {
+    opacity: 1;
+    /*-webkit-transition-delay: 0.5s;*/
+            /*transition-delay: 0.5s;*/
+    -webkit-transform: scale(1) translateY(57px) translateX(-23px);
+            transform: scale(1) translateY(57px) translateX(-23px);
+}
+
+#button:hover .sign {
+    opacity: 1;
+    /*-webkit-transition-delay: 0.6s;*/
+            /*transition-delay: 0.6s;*/
+    -webkit-transform: scale(1) translateY(57px) translateX(20px);
+            transform: scale(1) translateY(57px) translateX(20px);
+}
+
+.button {
+    /*Shape & Size*/
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    /*Background*/
+    background-color: dodgerblue;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    /*Position*/
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    /*Property*/
+    text-align: center;
+    line-height: 35px;
+    opacity: 1;
+    -webkit-transform: scale(0) translateY(0) translateX(0);
+            transform: scale(0) translateY(0) translateX(0);
+    -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+}
+
+#button:hover .button:hover {
+    -webkit-transition-delay: 0s;
+            transition-delay: 0s;
+    background-color: cornflowerblue;
+}
+
+/*---- At-Plus icon ----*/
+.icon {
+    /*Shape & Size*/
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    /*Background*/
+    background: url(../images/atplus_white.png);
+    background-repeat: no-repeat;
+    background-color: #989ad3;
+    background-position: center;
+    background-size: 90%;
+    /*-webkit-transition-delay: 0.2s;*/
+            /*transition-delay: 0.2s;*/
+    -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+}
+
+.apb {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+}
+
+#button:hover .icon {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+    background: url(../images/atplus_green.png) no-repeat #284098;
+    background-position: center;
+    background-size: 70%;
+}
+
+#result {
+    line-height: 120px;
+    color: white;
+    font-size: 40px;
+}
+
+.disabled {
+    background-color: #7d7e7f!important;
+}
+
+.disabled:hover {
+    background-color: #7d7e7f!important;
+}
+
+#msg {
+    position: absolute;
+    top: 650px;
+    width: 100%;
+    color: #284098;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
